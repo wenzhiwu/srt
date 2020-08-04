@@ -631,9 +631,7 @@ void TcpMedium::CreateListener()
     ConfigurePre();
 
     sockaddr_any sa = CreateAddr(m_uri.host(), m_uri.portno());
-
-    int stat = ::bind(m_socket, sa.get(), sizeof sa);
-
+    int stat = ::bind(m_socket, sa.get(), sizeof(*sa.get()));
     if (stat == -1)
     {
         tcp_close(m_socket);
